@@ -1,0 +1,1430 @@
+@import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css);
+
+//변수 선언
+$main-color: #572a31;
+$footer-bg: #efefef;
+$font-color: #333;
+$font-size: 16px;
+
+//믹스인 설정
+@mixin inner {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes sectionFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+//폰트 설정
+body {
+  font-family: "Noto Sans KR", sans-serif;
+  font-size: $font-size;
+  line-height: 1.5;
+  color: $font-color;
+}
+
+#wrap {
+  width: 100%;
+}
+
+//screen width 1440px 이상
+.inner {
+  @include inner();
+}
+
+//태블릿~모바일 스타일
+.mNav,
+.navLogo,
+.mMall,
+.footerLang {
+  display: none;
+}
+
+//헤더 영역
+header {
+  width: 100%;
+  height: 140px;
+  position: fixed;
+  padding: 20px 0;
+  background-color: #fff;
+  transition: 0.5s;
+  z-index: 40;
+  &.on {
+    height: 120px;
+    box-shadow: 2px 2px 8px #777;
+  }
+  .leftNav {
+    width: 100%;
+    height: 100vh;
+    background: rgba($color: #000000, $alpha: 0.8);
+    position: fixed;
+    z-index: 20;
+    top: 0;
+    left: -100%;
+    transition: 0.5s;
+    &.on {
+      left: 0;
+    }
+    .navClose {
+      position: absolute;
+      top: 0;
+      left: 27%;
+      cursor: pointer;
+      padding: 15px;
+      .navicon {
+        width: 20px;
+        height: 20px;
+        img {
+          width: 100%;
+        }
+      }
+    }
+    .leftNavWrap {
+      width: 27%;
+      height: 100%;
+      background-color: #fff;
+      z-index: 20;
+      .navLogoWrap {
+        width: 100%;
+        padding: 20px;
+        border-bottom: 1px solid #ccc;
+        .navLogo {
+          width: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          img {
+            width: 70%;
+          }
+        }
+      }
+      .mainNav {
+        width: 100%;
+        .mainNavList {
+          border-bottom: 1px solid #ccc;
+          position: relative;
+          p {
+            padding: 10px;
+          }
+          .navDown {
+            width: 15px;
+            height: 15px;
+            position: absolute;
+            right: 15px;
+            top: 15px;
+            background: url("../img/nav/nav_down.png") center center/cover
+              no-repeat;
+            font-size: 0;
+            &.on {
+              background: url("../img/nav/nav_up.png") center center/cover
+                no-repeat;
+            }
+          }
+          &.on {
+            background: $main-color;
+            color: #fff;
+          }
+          .subMenu {
+            background: #f6f6f6;
+            color: #666;
+            height: 0px;
+            transition: 0.5s;
+            overflow: hidden;
+            &.community.slide {
+              height: 400px;
+            }
+            .subTit {
+              height: 44px;
+              border-bottom: 1px solid #ebebeb;
+              overflow: hidden;
+              transition: 0.5s;
+              &.commuSubTit1.on {
+                height: 185px;
+              }
+              &.commuSubTit2.on {
+                height: 300px;
+              }
+              &.commuSubTit3.on {
+                height: 185px;
+              }
+              &.brandSubTit.on {
+                height: 240px;
+              }
+              > a {
+                display: block;
+                padding: 10px 20px;
+              }
+            }
+            > li {
+              padding: 15px 25px;
+              border-bottom: 1px solid #ebebeb;
+            }
+            .subMenuWrap {
+              background-color: #fff;
+              padding: 20px;
+              height: 0;
+              overflow: hidden;
+              transition: 0.5s;
+              font-size: 14px;
+              &.on {
+                height: 165px;
+              }
+              .subMenuList {
+                padding: 0;
+                border-bottom: none;
+                li {
+                  padding: 8px 0;
+                  color: #777;
+                }
+              }
+              &.cummuSub1.on {
+                height: 185px;
+              }
+              &.cummuSub2.on {
+                height: 330px;
+              }
+              &.cummuSub3.on {
+                height: 165px;
+              }
+              &.brandSub.on {
+                height: 180px;
+              }
+            }
+            &.menu.on {
+              height: 220px;
+            }
+            &.store.on {
+              height: 110px;
+            }
+            &.service.on {
+              height: 330px;
+            }
+            &.community.on {
+              height: 180px;
+              &.open1 {
+                height: 320px;
+              }
+              &.open2 {
+                height: 440px;
+              }
+              &.open3 {
+                height: 310px;
+              }
+            }
+            &.brand.on {
+              height: 180px;
+              &.open {
+                height: 380px;
+              }
+            }
+          }
+        }
+      }
+      .navLang {
+        ul {
+          display: flex;
+          padding: 30px;
+          justify-content: center;
+          align-items: center;
+          color: #777;
+          font-size: 12px;
+          li {
+            padding: 0 10px;
+            &:nth-child(2) {
+              position: relative;
+            }
+            &:nth-child(2)::after {
+              display: block;
+              content: "";
+              width: 1px;
+              height: 12px;
+              background-color: #ccc;
+              position: absolute;
+              top: 5px;
+              left: 0;
+            }
+          }
+        }
+      }
+    }
+  }
+  .inner {
+    display: flex;
+    justify-content: space-between;
+    .mNav,
+    .mMall {
+      display: none;
+    }
+    .logo {
+      width: 40%;
+      &.on {
+        div {
+          width: 15%;
+          img {
+            width: 90%;
+          }
+        }
+      }
+    }
+    .headerRight {
+      width: 55%;
+      .clearboth::after {
+        content: "";
+        display: block;
+        clear: both;
+      }
+      .topMenu {
+        display: flex;
+        float: right;
+        height: 30px;
+        align-items: center;
+        width: 40%;
+        text-align: center;
+        justify-content: flex-end;
+        font-size: 13px;
+        li {
+          padding: 0 10px;
+          position: relative;
+          &:nth-child(1)::after {
+            display: none;
+          }
+          &::after {
+            content: "";
+            display: block;
+            width: 1px;
+            height: 10px;
+            background-color: #ccc;
+            position: absolute;
+            top: 50%;
+            left: 0px;
+            transform: translateY(-50%);
+          }
+        }
+      }
+      nav {
+        padding-top: 50px;
+        position: relative;
+        z-index: 40;
+        .mainNav {
+          display: flex;
+          justify-content: space-between;
+          text-align: center;
+          .mainNavList {
+            width: 16%;
+            position: relative;
+            height: 50px;
+            text-align: center;
+            font-size: 18px;
+            z-index: 40;
+            &:hover {
+              .subMenu {
+                display: block;
+                opacity: 1;
+              }
+            }
+            &.on {
+              .subMenu {
+                display: block;
+                opacity: 1;
+              }
+            }
+            .subMenu {
+              width: 150px;
+              display: flex;
+              flex-direction: column;
+              background-color: #fff;
+              box-shadow: 2px 2px 10px #666;
+              text-align: left;
+              position: absolute;
+              top: 50px;
+              right: 0;
+              display: none;
+              animation: fade 0.5s;
+              transition: 0.5s;
+              z-index: 40;
+              > li {
+                padding: 8px 0;
+                font-size: 14px;
+                font-weight: 600;
+              }
+            }
+            .menu {
+              padding: 35px;
+              right: calc(50% - 75px);
+            }
+            .store {
+              width: 180px;
+              padding: 40px 25px;
+              right: calc(50% - 90px);
+            }
+            .service {
+              width: 180px;
+              padding: 50px 25px;
+              right: calc(45px - 50%);
+            }
+            .community {
+              width: 600px;
+              padding: 50px 40px;
+              color: #666;
+              right: -100%;
+              .socialR {
+                width: 30%;
+                padding-bottom: 10px;
+              }
+              .middle {
+                padding: 0 50px;
+              }
+            }
+            .brand {
+              flex-direction: row;
+              width: 400px;
+              padding: 50px 20px;
+              font-weight: normal;
+              > ul {
+                margin: 0 20px;
+              }
+              ul > li {
+                font-weight: normal;
+                &.subTit {
+                  font-weight: 600;
+                  color: #000;
+                }
+              }
+              .brandRight {
+                width: 30%;
+                padding-bottom: 10px;
+              }
+            }
+            .subTit {
+              font-weight: normal;
+              font-size: 15px;
+              font-weight: 500;
+              color: #000;
+              float: left;
+              div {
+                color: #666;
+                font-weight: 400;
+                ul {
+                  > li {
+                    padding: 5px 0;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+//고정 스크롤 영역
+#scroll {
+  height: 140px;
+  position: fixed;
+  bottom: 50px;
+  right: 10px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 200;
+  transition: 0.5s;
+  .chatbot {
+    width: 80px;
+    height: 80px;
+    img {
+      width: 100%;
+    }
+  }
+  .goTop {
+    width: 40px;
+    height: 40px;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    text-align: center;
+    line-height: 50px;
+    position: fixed;
+    bottom: 50px;
+    right: 10px;
+    opacity: 0;
+    transition: 0.3s;
+    z-index: 200;
+    &:hover {
+      background-color: #000;
+    }
+    &.on {
+      opacity: 1;
+    }
+  }
+}
+
+//메인 비주얼 영역
+#mainVisual {
+  padding-top: 140px;
+  width: 100%;
+  height: 100%;
+  &.fadeIn {
+    animation: sectionFadeIn 0.8s;
+  }
+  .mainVisualImg {
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    &::after {
+      content: "";
+      display: block;
+      clear: both;
+    }
+    .visualImgWrap {
+      width: 100%;
+      height: 100%;
+      //position: relative;
+      .imgWrap {
+        display: flex;
+        width: 100%;
+        height: 100%;
+        //position: relative;
+        .imgList {
+          //position: absolute;
+          width: 100%;
+          top: 0;
+          left: 0;
+          z-index: 1;
+          display: none;
+          animation: fade 0.8s;
+          &.on {
+            display: block;
+          }
+          a {
+            display: block;
+          }
+        }
+        .imgList2 {
+          //position: absolute;
+          width: 100%;
+          top: 0;
+          left: 0;
+          z-index: 1;
+          display: none;
+          animation: fade 0.8s;
+          .imgDiv {
+            img {
+              width: 100%;
+            }
+          }
+          &.on {
+            display: block;
+          }
+          a {
+            display: block;
+          }
+        }
+      }
+    }
+    .listBtn {
+      position: absolute;
+      left: 150px;
+      bottom: 5%;
+      z-index: 11;
+      display: flex;
+      align-items: center;
+      .listNum {
+        font-weight: 700;
+      }
+      .btnList {
+        display: flex;
+        align-items: center;
+        padding: 0 15px;
+        span {
+          display: block;
+          width: 40px;
+          height: 2px;
+          background-color: #fff;
+          margin: 0 3px;
+          transition: 0.5s;
+          &.on {
+            background-color: #000;
+          }
+        }
+      }
+    }
+  }
+  .mainNewsSlider {
+    background-color: $main-color;
+    //margin-top: 790px;
+    .inner {
+      color: #fff;
+      display: flex;
+      align-items: center;
+      padding: 20px 0;
+      .noticeWrap {
+        padding: 0 25px;
+        flex: 1;
+        height: 30px;
+        overflow: hidden;
+        .noticeBox {
+          display: flex;
+          width: 98%;
+          height: 30px;
+          position: relative;
+          left: 0;
+          .noticeBoxCon {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 98%;
+            &:first-child {
+              margin-right: 10px;
+            }
+            .noticeTxt {
+              width: 442px;
+              text-overflow: ellipsis;
+            }
+          }
+        }
+        .noticeTop {
+          top: 0;
+          transition: 0.3s;
+          &.up {
+            top: -30px;
+          }
+        }
+        .noticeDown {
+          top: 0;
+          transition: 0.3s;
+          &.up {
+            top: -30px;
+          }
+        }
+      }
+    }
+  }
+}
+
+//일시 정지/재생 버튼
+.pause {
+  line-height: 15px;
+  position: relative;
+  i {
+    position: absolute;
+    left: 0;
+    bottom: -12px;
+    display: none;
+    &.on {
+      display: block;
+    }
+  }
+}
+
+//메뉴 영역
+#menu {
+  padding-top: 150px;
+  padding-bottom: 50px;
+  opacity: 0;
+  &.fadeIn {
+    animation: sectionFadeIn 0.8s;
+    opacity: 1;
+  }
+}
+
+//메뉴 영역 + 판매 상품 영역 제목
+.titleDiv {
+  position: relative;
+  width: 100%;
+  h1 {
+    width: 50%;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .sliderIndi {
+    height: 30px;
+    line-height: 30px;
+    align-items: center;
+    position: absolute;
+    z-index: 8;
+    top: 35px;
+    transform: translateY(-35px);
+    display: flex;
+    right: 20px;
+    .listNum {
+      font-weight: 500;
+    }
+    .indiBtn {
+      display: flex;
+      padding: 0 10px;
+      span {
+        display: block;
+        width: 13px;
+        height: 13px;
+        background: #ccc;
+        border-radius: 50%;
+        margin: 0 10px;
+        transition: 0.5s;
+        &.on {
+          background: $main-color;
+        }
+      }
+    }
+  }
+}
+
+//메뉴 영역 + 판매 상품 영역 상품 슬라이더
+.menuSlider {
+  display: flex;
+  position: relative;
+  padding-top: 40px;
+  overflow: hidden;
+  .slider {
+    width: 36px;
+    height: 30px;
+    position: absolute;
+    top: 40%;
+    transform: translateX(-50%);
+  }
+  .sliderPause {
+    left: 20px;
+    z-index: 8;
+    img {
+      width: 50%;
+    }
+  }
+  .sliderNext {
+    right: -35px;
+    img {
+      width: 50%;
+    }
+  }
+  .menuSliderList {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    position: relative;
+    left: 0%;
+    transition: 0.2s;
+    li {
+      width: 470px;
+      .menuImg {
+        position: relative;
+        img {
+          width: 470px;
+        }
+        .hoverLine {
+          width: 100%;
+          height: 100%;
+          border: 1px solid #fff;
+          opacity: 0;
+          transition: 0.5s;
+          position: absolute;
+          top: 0;
+          left: 0;
+        }
+        &:hover {
+          .hoverLine {
+            transform: scale(0.92);
+            opacity: 0.5;
+          }
+        }
+      }
+      p {
+        font-weight: 700;
+        font-size: 20px;
+        padding: 50px 0;
+        text-align: center;
+      }
+    }
+  }
+}
+
+//브랜드 소개 영역
+#joinUs {
+  width: 100%;
+  background-image: url("../img/main/section2_bg.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 110%;
+  height: 100%;
+  padding: 100px 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  color: $main-color;
+  .joinWrap {
+    opacity: 0;
+    &.fadeIn {
+      animation: sectionFadeIn 0.8s;
+      opacity: 1;
+    }
+    .joinText {
+      margin-left: auto;
+      .brandTit {
+        padding-bottom: 30px;
+        font-size: 30px;
+        .titImg {
+          padding-top: 15px;
+        }
+      }
+      .brandText {
+        width: 100%;
+        max-width: 840px;
+        font-size: 23px;
+        font-weight: 500;
+        line-height: 1.8;
+      }
+    }
+    ul {
+      display: flex;
+      margin-left: auto;
+      padding: 40px 50px 20px 0;
+      li {
+        border: 1px solid $main-color;
+        width: 100%;
+        max-width: 33.33%;
+        text-align: center;
+        margin-right: 15px;
+        padding: 15px;
+        font-size: 23px;
+        font-weight: 400;
+        &.check {
+          background: $main-color;
+          color: #fff;
+        }
+      }
+    }
+  }
+}
+
+//판매 상품 영역
+#products {
+  padding: 80px 0;
+  opacity: 0;
+  &.fadeIn {
+    animation: sectionFadeIn 0.8s;
+    opacity: 1;
+  }
+}
+
+//sns 이미지 영역
+#snsImg {
+  padding-bottom: 120px;
+  opacity: 0;
+  &.fadeIn {
+    animation: sectionFadeIn 0.8s;
+    opacity: 1;
+  }
+  .titleDiv {
+    padding-bottom: 40px;
+  }
+  .snsImg {
+    ul {
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      li {
+        width: 20%;
+        height: 250px;
+        overflow: hidden;
+        &:hover {
+          img {
+            transform: scale(1.1);
+          }
+        }
+        img {
+          width: 100%;
+          height: 100%;
+          transition: 0.5s;
+        }
+      }
+    }
+  }
+}
+
+//푸터 영역
+footer {
+  background: $footer-bg;
+  padding: 100px 0;
+  .inner {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    .sns {
+      position: absolute;
+      top: 0;
+      right: 0;
+      .snsIcon {
+        display: flex;
+        align-items: center;
+        ul {
+          display: flex;
+          li {
+            margin: 0 5px;
+          }
+        }
+      }
+    }
+    .customer {
+      flex: 0.2;
+      color: $main-color;
+      .tel {
+        padding: 5px 0;
+        line-height: 1;
+        font-size: 30px;
+        font-weight: 300;
+      }
+    }
+    .lang {
+      display: none;
+    }
+    .info {
+      flex: 0.8;
+      padding-left: 170px;
+      .footerMenu {
+        color: $main-color;
+        div {
+          ul {
+            display: flex;
+            li {
+              padding-right: 20px;
+              position: relative;
+              font-weight: 300;
+              &:not(:first-child)::after {
+                content: "";
+                display: block;
+                width: 2px;
+                height: 2px;
+                background: $main-color;
+                border-radius: 50%;
+                position: absolute;
+                top: 50%;
+                left: -10px;
+                transform: translateY(-50%);
+              }
+            }
+          }
+        }
+        .footerMenuBottom {
+          padding-top: 5px;
+        }
+      }
+      .company {
+        padding-top: 40px;
+        color: #8a8a8a;
+        font-size: 14px;
+        .address {
+          padding-bottom: 15px;
+          ul {
+            display: flex;
+          }
+        }
+      }
+    }
+  }
+}
+
+//screen width 1025px 이상
+
+//screen width 1024px ~ 769px
+@media all and (max-width: 1024px) and (min-width: 769px) {
+  .inner {
+    max-width: 100%;
+    overflow: hidden;
+  }
+  header {
+    width: 100%;
+    height: 80px;
+    padding: 10px 0;
+    &.on {
+      height: 80px;
+      box-shadow: 2px 2px 8px #777;
+    }
+    .mNav,
+    .navLogo,
+    .mMall {
+      display: block;
+    }
+    .inner {
+      height: 100%;
+      justify-content: space-between;
+      align-items: center;
+      .headerRight {
+        .topMenu {
+          display: none;
+          li {
+            display: none;
+          }
+        }
+      }
+      .logo {
+        width: 60%;
+        display: flex;
+        justify-content: flex-end;
+        h1 {
+          width: 15%;
+          img {
+            width: 85%;
+          }
+        }
+      }
+      nav {
+        display: none;
+      }
+      .mNav {
+        display: block;
+        width: 50px;
+        height: 50px;
+        padding: 20px;
+        span {
+          display: block;
+          content: "";
+          width: 25px;
+          height: 1px;
+          background-color: #000;
+          margin-bottom: 10px;
+          &:nth-child(2) {
+            width: 18px;
+          }
+        }
+      }
+      .mMall {
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+        padding-right: 15px;
+        img {
+          width: 5%;
+        }
+      }
+    }
+  }
+  #mainVisual {
+    padding-top: 80px;
+    .mainVisualImg {
+      .visualImgWrap {
+        width: 100%;
+        .imgWrap {
+          width: 100%;
+          .imgList {
+            width: 100%;
+          }
+        }
+      }
+      .listBtn {
+        left: 50%;
+        bottom: 55%;
+        transform: translateX(-50%);
+        .listNum {
+          display: none;
+        }
+        .pause {
+          display: none;
+        }
+      }
+    }
+    .mainNewsSlider {
+      //margin-top: 42%;
+      .inner {
+        .notice {
+          padding-left: 25px;
+        }
+        .noticeBox {
+          .noticeLeft {
+            width: 100%;
+            font-size: 14px;
+            font-weight: 300;
+            .noticeTop {
+              .noticeDate {
+                text-align: center;
+              }
+            }
+          }
+          .noticeRight {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+  #menu {
+    padding-top: 80px;
+  }
+  .titleDiv {
+    .sliderIndi {
+      display: none;
+    }
+  }
+  .menuSlider {
+    padding-left: 15px;
+    padding-right: 15px;
+    .sliderPause {
+      left: 35px;
+    }
+    .sliderNext {
+      right: -20px;
+    }
+    ul {
+      li {
+        display: flex;
+        justify-content: center;
+        max-width: 330px;
+        .menuImg {
+          img {
+            max-width: 330px;
+          }
+          .hoverLine {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+  #joinUs {
+    padding: 50px 30px 50px 330px;
+    background-size: 150%;
+    .joinWrap {
+      .joinText {
+        .brandTit {
+          font-size: 23px;
+          .titImg {
+            img {
+              width: 50%;
+            }
+          }
+        }
+        .brandText {
+          font-size: 18px;
+          br {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+  #snsImg {
+    padding-left: 15px;
+    padding-right: 15px;
+    .snsImg {
+      ul {
+        li {
+          height: 200px;
+          &:hover {
+            img {
+              transform: scale(1);
+            }
+          }
+        }
+      }
+    }
+  }
+  footer {
+    padding-left: 15px;
+    padding-right: 15px;
+    .inner {
+      flex-direction: column;
+      .sns {
+        position: relative;
+        top: auto;
+        right: auto;
+        p {
+          font-size: 14px;
+          color: #666;
+          padding-right: 15px;
+        }
+      }
+      .lang {
+        display: block;
+        padding: 25px 0;
+        p {
+          font-size: 14px;
+          color: #666;
+        }
+        ul {
+          display: flex;
+          li {
+            padding-right: 15px;
+          }
+        }
+      }
+      .customer {
+        padding-bottom: 25px;
+        .tel {
+          font-size: 25px;
+        }
+      }
+      .info {
+        padding: 0;
+      }
+    }
+  }
+}
+
+//screen width 768px 이하
+@media all and (max-width: 768px) {
+  .inner {
+    max-width: 100%;
+    overflow: hidden;
+  }
+  header {
+    width: 100%;
+    height: 70px;
+    padding: 0;
+    &.on {
+      height: 60px;
+      box-shadow: 2px 2px 8px #777;
+    }
+    .mNav,
+    .navLogo,
+    .mMall {
+      display: block;
+    }
+    .inner {
+      height: 100%;
+      justify-content: space-between;
+      align-items: center;
+      .headerRight {
+        .topMenu {
+          display: none;
+          li {
+            display: none;
+          }
+        }
+      }
+      .logo {
+        width: 60%;
+        display: flex;
+        justify-content: flex-end;
+        h1 {
+          width: 15%;
+          img {
+            width: 100%;
+          }
+        }
+      }
+      nav {
+        display: none;
+      }
+      .mNav {
+        display: block;
+        width: 50px;
+        height: 50px;
+        padding: 20px;
+        span {
+          display: block;
+          content: "";
+          width: 25px;
+          height: 1px;
+          background-color: #000;
+          margin-bottom: 10px;
+          &:nth-child(2) {
+            width: 18px;
+          }
+        }
+      }
+      .mMall {
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+        padding-right: 15px;
+        img {
+          width: 5%;
+        }
+      }
+    }
+  }
+  #mainVisual {
+    padding-top: 70px;
+    .mainVisualImg {
+      .visualImgWrap {
+        .imgWrap {
+          .imgList {
+            img {
+              width: 100%;
+            }
+          }
+        }
+      }
+      .listBtn {
+        left: 50%;
+        bottom: -50%;
+        transform: translateX(-50%);
+        .listNum {
+          display: none;
+        }
+        .pause {
+          display: none;
+        }
+      }
+    }
+    .mainNewsSlider {
+      //margin-top: 152%;
+      .inner {
+        .notice {
+          padding-left: 25px;
+        }
+        .noticeWrap {
+          .noticeBox {
+            .mobileNone {
+              display: none;
+            }
+          }
+        }
+      }
+    }
+  }
+  .titleDiv {
+    h1 {
+      width: 100%;
+    }
+    .sliderIndi {
+      display: none;
+    }
+  }
+  .menuSlider {
+    padding-left: 15px;
+    padding-right: 15px;
+    .sliderPause {
+      left: 35px;
+    }
+    .sliderNext {
+      right: -20px;
+    }
+    ul {
+      li {
+        min-width: 730px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .menuImg {
+          .hoverLine {
+            display: none;
+          }
+          img {
+            min-width: 730px;
+          }
+        }
+      }
+    }
+  }
+  #joinUs {
+    background-image: url("../img/main/section2_bg_m.jpg");
+    background-position: center 120%;
+    background-size: 100% 130%;
+    height: 1200px;
+    padding: 0;
+    align-items: center;
+    .joinWrap {
+      padding-bottom: 350px;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      .joinText {
+        .brandTit {
+          h1 {
+            font-size: 38px;
+            text-align: center;
+          }
+          .titImg {
+            img {
+              width: 50%;
+            }
+          }
+        }
+        .brandText {
+          text-align: center;
+          font-size: 18px;
+        }
+      }
+      ul {
+        flex-wrap: wrap;
+        justify-content: center;
+        li {
+          max-width: 48%;
+          &:nth-child(3) {
+            margin-right: 0;
+          }
+        }
+        .check {
+          margin-bottom: 15px;
+          max-width: 100%;
+          margin-right: 0;
+        }
+      }
+    }
+  }
+  #snsImg {
+    padding-left: 15px;
+    padding-right: 15px;
+    .snsImg {
+      ul {
+        li {
+          width: 33.3333%;
+          height: 200px;
+          &:hover {
+            img {
+              transform: scale(1);
+            }
+          }
+        }
+      }
+    }
+  }
+  footer {
+    padding-left: 15px;
+    padding-right: 15px;
+    .inner {
+      flex-direction: column;
+      .sns {
+        position: relative;
+        top: auto;
+        right: auto;
+        p {
+          font-size: 14px;
+          color: #666;
+          padding-right: 15px;
+        }
+      }
+      .lang {
+        display: block;
+        padding: 25px 0;
+        p {
+          font-size: 14px;
+          color: #666;
+        }
+        ul {
+          display: flex;
+          li {
+            padding-right: 15px;
+          }
+        }
+      }
+      .customer {
+        padding-bottom: 25px;
+        .tel {
+          font-size: 25px;
+        }
+      }
+      .info {
+        padding: 0;
+      }
+    }
+  }
+}
